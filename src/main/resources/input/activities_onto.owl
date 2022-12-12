@@ -1,0 +1,269 @@
+@prefix : <http://www.semanticweb.org/xristina/ontologies/2022/11/act#> .
+@prefix act: <http://www.semanticweb.org/xristina/ontologies/2022/11/act#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/xristina/ontologies/2022/11/act> .
+
+<http://www.semanticweb.org/xristina/ontologies/2022/11/act> rdf:type owl:Ontology ;
+                                                              owl:versionIRI <http://www.semanticweb.org/xristina/ontologies/2022/11/act> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#has_observation
+act:has_observation rdf:type owl:ObjectProperty ;
+                    owl:inverseOf act:is_part_of ;
+                    rdfs:domain act:Activity ;
+                    rdfs:range act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#is_part_of
+act:is_part_of rdf:type owl:ObjectProperty ;
+               rdfs:domain act:Observation ;
+               rdfs:range act:Activity .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#time_interval
+act:time_interval rdf:type owl:ObjectProperty ;
+                  rdfs:domain act:Detectable ;
+                  rdfs:range act:Interval .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#end
+act:end rdf:type owl:DatatypeProperty ;
+        rdfs:domain act:Interval ;
+        rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#start
+act:start rdf:type owl:DatatypeProperty ;
+          rdfs:domain act:Interval ;
+          rdfs:range xsd:dateTime .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Accounts
+act:Accounts rdf:type owl:Class ;
+             rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Activity
+act:Activity rdf:type owl:Class ;
+             rdfs:subClassOf act:Detectable .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Basket
+act:Basket rdf:type owl:Class ;
+           rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Bending
+act:Bending rdf:type owl:Class ;
+            rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Cup
+act:Cup rdf:type owl:Class ;
+        rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Detectable
+act:Detectable rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty act:time_interval ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass act:Interval
+                               ] .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#DrinkTea
+act:DrinkTea rdf:type owl:Class ;
+             rdfs:subClassOf act:Activity .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#EstablishAccountBalance
+act:EstablishAccountBalance rdf:type owl:Class ;
+                            rdfs:subClassOf act:Activity .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Interval
+act:Interval rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty act:end ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onDataRange xsd:dateTime
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty act:start ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onDataRange xsd:dateTime
+                             ] .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Kettle
+act:Kettle rdf:type owl:Class ;
+           rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#MakePhoneCall
+act:MakePhoneCall rdf:type owl:Class ;
+                  rdfs:subClassOf act:Activity .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Map
+act:Map rdf:type owl:Class ;
+        rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#MapZone
+act:MapZone rdf:type owl:Class ;
+            rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#MedicationZone
+act:MedicationZone rdf:type owl:Class ;
+                   rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Newspaper
+act:Newspaper rdf:type owl:Class ;
+              rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Observation
+act:Observation rdf:type owl:Class ;
+                rdfs:subClassOf act:Detectable ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty act:is_part_of ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass act:Activity
+                                ] .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Pen
+act:Pen rdf:type owl:Class ;
+        rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Phone
+act:Phone rdf:type owl:Class ;
+          rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#PhoneZone
+act:PhoneZone rdf:type owl:Class ;
+              rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#PickUpPhone
+act:PickUpPhone rdf:type owl:Class ;
+                rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Pillbox
+act:Pillbox rdf:type owl:Class ;
+            rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Plant
+act:Plant rdf:type owl:Class ;
+          rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#PlantZone
+act:PlantZone rdf:type owl:Class ;
+              rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#PrepareDrugBox
+act:PrepareDrugBox rdf:type owl:Class ;
+                   rdfs:subClassOf act:Activity .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#PrepareHotTea
+act:PrepareHotTea rdf:type owl:Class ;
+                  rdfs:subClassOf act:Activity .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#ReadArticle
+act:ReadArticle rdf:type owl:Class ;
+                rdfs:subClassOf act:Activity .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#RouteInstructions
+act:RouteInstructions rdf:type owl:Class ;
+                      rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#SearchForBusLine
+act:SearchForBusLine rdf:type owl:Class ;
+                     rdfs:subClassOf act:Activity .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Sitting
+act:Sitting rdf:type owl:Class ;
+            rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Spoon
+act:Spoon rdf:type owl:Class ;
+          rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Sugar
+act:Sugar rdf:type owl:Class ;
+          rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Table
+act:Table rdf:type owl:Class ;
+          rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#TableZone
+act:TableZone rdf:type owl:Class ;
+              rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#Talk
+act:Talk rdf:type owl:Class ;
+         rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#TeaBag
+act:TeaBag rdf:type owl:Class ;
+           rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#TeaZone
+act:TeaZone rdf:type owl:Class ;
+            rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#WaterPlant
+act:WaterPlant rdf:type owl:Class ;
+               rdfs:subClassOf act:Activity .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#WateringCan
+act:WateringCan rdf:type owl:Class ;
+                rdfs:subClassOf act:Observation .
+
+
+###  http://www.semanticweb.org/xristina/ontologies/2022/11/act#WriteCheck
+act:WriteCheck rdf:type owl:Class ;
+               rdfs:subClassOf act:Activity .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
