@@ -11,16 +11,13 @@ import be.ugent.rml.store.QuadStore;
 import be.ugent.rml.store.QuadStoreFactory;
 import be.ugent.rml.store.RDF4JStore;
 import be.ugent.rml.term.NamedNode;
-
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
+*/
 
 import static org.example.App.RESOURCES;
 
 
 // V6.1.2 imports
-
+/*
 import be.ugent.idlab.knows.functions.agent.Agent;
 import be.ugent.idlab.knows.functions.agent.AgentFactory;
 import be.ugent.rml.Executor;
@@ -31,13 +28,12 @@ import be.ugent.rml.store.QuadStoreFactory;
 import be.ugent.rml.store.RDF4JStore;
 import be.ugent.rml.term.NamedNode;
 import java.io.*;
-
+*/
 
 
 public class Mapping {
 
     private final String mappingFilePath = RESOURCES + "processed/activities_mapping.ttl";
-    private final String dataFilePath = RESOURCES + "processed/data.ttl";
 
     public Mapping() {
         mapping_v5();
@@ -45,7 +41,7 @@ public class Mapping {
 
     public void mapping_v5() {
 
-        try {
+        /*try {
             File mappingFile = new File(mappingFilePath);
 
             // Get the mapping string stream
@@ -84,8 +80,8 @@ public class Mapping {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }*/
+        }*/
+    }
 
     /*public void mapping_v612() {
         try {
@@ -122,3 +118,4 @@ public class Mapping {
     }*/
 
 
+}
