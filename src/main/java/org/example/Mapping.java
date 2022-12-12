@@ -1,7 +1,8 @@
 package org.example;
 
-//V5.0.0 imports /*
-import be.ugent.rml.Executor;
+
+//V5.0.0 imports
+/*import be.ugent.rml.Executor;
 import be.ugent.rml.Utils;
 import be.ugent.rml.functions.FunctionLoader;
 import be.ugent.rml.functions.lib.IDLabFunctions;
@@ -19,7 +20,7 @@ import static org.example.App.RESOURCES;
 
 
 // V6.1.2 imports
-/*
+
 import be.ugent.idlab.knows.functions.agent.Agent;
 import be.ugent.idlab.knows.functions.agent.AgentFactory;
 import be.ugent.rml.Executor;
@@ -30,7 +31,7 @@ import be.ugent.rml.store.QuadStoreFactory;
 import be.ugent.rml.store.RDF4JStore;
 import be.ugent.rml.term.NamedNode;
 import java.io.*;
-*/
+
 
 
 public class Mapping {
@@ -84,7 +85,7 @@ public class Mapping {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     /*public void mapping_v612() {
         try {
@@ -120,4 +121,4 @@ public class Mapping {
         }
     }*/
 
-}
+

@@ -21,6 +21,6 @@ public class App {
     public static void main(String[] args ) {
         App app = new App();
         app.process_json_and_ontology();
-        new Mapping();
+        //new Mapping();
     }
 }
