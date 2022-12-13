@@ -1,0 +1,35 @@
+##var a c start end
+PREFIX act: <http://www.semanticweb.org/xristina/ontologies/2022/11/act#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?a ?c ?start ?end where {
+    ?a a ?c .
+    ?c rdfs:subClassOf act:Activity .
+    ?a act:time_interval/act:start ?start .
+    ?a act:time_interval/act:end ?end .
+    filter (?c != act:Activity)
+}  
+##next
+##var c
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX act: <http://www.semanticweb.org/xristina/ontologies/2022/11/act#>
+select * where { 
+	?c rdfs:subClassOf act:Observation .
+}
+##next
+##var o content start end
+PREFIX act: <http://www.semanticweb.org/xristina/ontologies/2022/11/act#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select ?o ?content ?start ?end where {
+    ?o a ?content .
+    ?content rdfs:subClassOf act:Observation .
+    ?o act:time_interval ?interval .
+	?interval act:start ?start .
+    ?interval act:end ?end .
+    filter( ?content != act:Observation
+        #&& ?start >= "2014-05-05T18:34:54.000"^^xsd:dateTime
+    	#&& ?end <= "2014-05-05T18:55:40.000"^^xsd:dateTime
+	)
+} 
+##next

@@ -11,20 +11,14 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import static org.example.App.*;
-
 public class JSONHandler {
 
     private JSONObject obj;
     private JSONArray activities;
-    private String json_path_og = RESOURCES + "input/example_observations.json";
-    private String ontology_og = RESOURCES + "input/activities_onto.owl";
 
-    public JSONHandler(String json_path) {
-        if(json_path != null)
-            this.json_path_og = json_path;
+    public JSONHandler() {
         try {
-            obj = (JSONObject) new JSONParser().parse(new FileReader(this.json_path_og));
+            obj = (JSONObject) new JSONParser().parse(new FileReader(CONSTANTS.json_path_og));
             activities = (JSONArray) ((JSONObject) obj.get("model")).get("activities") ;
         } catch(IOException | ParseException e) {
             e.printStackTrace();
@@ -32,7 +26,7 @@ public class JSONHandler {
     }
 
     public boolean alreadyProcessed() {
-        return new File(ontology_full).exists() && new File(json_path_with_ids).exists();
+        return new File(CONSTANTS.ontology_full).exists() && new File(CONSTANTS.json_path_with_ids).exists();
     }
 
     public void setKeys() {
@@ -52,7 +46,7 @@ public class JSONHandler {
                 addAttribute((JSONObject) observation, "id", obs_id_str + obs_ids.get(obs_content));
             }
         }
-        try (FileWriter file = new FileWriter(App.json_path_with_ids)) {
+        try (FileWriter file = new FileWriter(CONSTANTS.json_path_with_ids)) {
             file.write(obj.toJSONString());
             file.flush();
         } catch (IOException e) {
@@ -74,7 +68,7 @@ public class JSONHandler {
             for(String class_ : classes.get(superclass))
                 newTriples.append(
                         String.format("%s%s\n%s%s rdf:type owl:Class ;\n\trdfs:subClassOf %s%s .\n\n",
-                                App.uri, class_, App.prefix, class_, App.prefix, superclass)
+                                CONSTANTS.uri, class_, CONSTANTS.prefix, class_, CONSTANTS.prefix, superclass)
                 );
         System.out.println(newTriples);
         write_full_ontology(newTriples);
@@ -82,13 +76,13 @@ public class JSONHandler {
 
     private HashMap<String, HashSet<String>> findClasses() {
         HashMap<String, HashSet<String>> classes = new HashMap<>(2);
-        classes.put(App.ACT, new HashSet<>());
-        classes.put(App.OBS, new HashSet<>());
+        classes.put(CONSTANTS.ACT, new HashSet<>());
+        classes.put(CONSTANTS.OBS, new HashSet<>());
 
         for (Object activity : activities) {
-            classes.get(App.ACT).add(getContent(activity));
-            for (Object obsevation : (JSONArray) ((JSONObject)activity).get("observations"))
-                classes.get(App.OBS).add(getContent(obsevation));
+            classes.get(CONSTANTS.ACT).add(getContent(activity));
+            for (Object observation : (JSONArray) ((JSONObject)activity).get("observations"))
+                classes.get(CONSTANTS.OBS).add(getContent(observation));
         }
         System.out.println(classes);
         return classes;
@@ -96,10 +90,10 @@ public class JSONHandler {
 
     private void write_full_ontology(StringBuilder newTriples) {
         try {
-            File file = new File(App.ontology_full);
+            File file = new File(CONSTANTS.ontology_full);
             BufferedWriter writer = new BufferedWriter(new FileWriter(file, false)) ;
             writer.append(
-                    Files.readString(Paths.get(ontology_og))
+                    Files.readString(Paths.get(CONSTANTS.ontology_og))
             );
             writer.append("\n\n");
             writer.append(newTriples);

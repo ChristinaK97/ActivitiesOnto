@@ -13,8 +13,6 @@ import be.ugent.rml.store.RDF4JStore;
 import be.ugent.rml.term.NamedNode;
 */
 
-import static org.example.App.RESOURCES;
-
 
 // V6.1.2 imports
 /*
@@ -32,8 +30,6 @@ import java.io.*;
 
 
 public class Mapping {
-
-    private final String mappingFilePath = RESOURCES + "processed/activities_mapping.ttl";
 
     public Mapping() {
         mapping_v5();
