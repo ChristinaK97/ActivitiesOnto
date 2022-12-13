@@ -11,15 +11,15 @@ public class CONSTANTS {
     // ontology and data input files
     public static final String ontology_og = RESOURCES + "input/activities_onto.owl";
     public static final String json_path_og = RESOURCES + "input/example_observations.json";
+    public static final String mappingFilePath = RESOURCES + "processed/activities_mapping.ttl";
 
     // ontology and data processed files
     public static final String ontology_full = RESOURCES + "processed/activities_onto_full.ttl";
     public static final String json_path_with_ids = RESOURCES + "processed/observations_with_ids.json";
     public static final String dataFilePath = RESOURCES + "processed/data.ttl";
-    public static final String mappingFilePath = RESOURCES + "processed/activities_mapping.ttl";
 
     // repository
-    public static final String repoConfigFile = RESOURCES + "processed/graphDB_repoConfig.ttl";
+    public static final String repoConfigFile = RESOURCES + "input/graphDB_repoConfig.ttl";
     public static final String repoId = "repo-test-1";
 
     // queries
