@@ -30,21 +30,24 @@ public class JSONHandler {
     }
 
     public void setKeys() {
-        for (int i=0; i< activities.size(); ++i) {
-            String act_id_str = "a" + i;
-            JSONObject activity = (JSONObject) activities.get(i);
+        long counter = 0;
+        for (Object act : activities) {
+            JSONObject activity = (JSONObject) act;
+
+            String act_id_str = "a" + generateID(counter);
             addAttribute(activity, "id", act_id_str);
 
-            HashMap<String, Integer> obs_ids = new HashMap<>();
+            HashMap<String, String> obs_ids = new HashMap<>();
             String obs_id_str = act_id_str + ".o";
 
             for (Object observation : (JSONArray) activity.get("observations")) {
                 String obs_content = getContent(observation);
 
                 if (!obs_ids.containsKey(obs_content))
-                    obs_ids.put(obs_content, obs_ids.size());
+                    obs_ids.put(obs_content, generateID(obs_ids.size()));
                 addAttribute((JSONObject) observation, "id", obs_id_str + obs_ids.get(obs_content));
             }
+            ++counter;
         }
         try (FileWriter file = new FileWriter(CONSTANTS.json_path_with_ids)) {
             file.write(obj.toJSONString());
@@ -52,6 +55,10 @@ public class JSONHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String generateID(long counter) {
+        return Long.toHexString(counter);
     }
 
     private void addAttribute(JSONObject object, String key, String value) {

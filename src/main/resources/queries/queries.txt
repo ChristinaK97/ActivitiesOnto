@@ -28,8 +28,8 @@ select ?o ?content ?start ?end where {
 	?interval act:start ?start .
     ?interval act:end ?end .
     filter( ?content != act:Observation
-        #&& ?start >= "2014-05-05T18:34:54.000"^^xsd:dateTime
-    	#&& ?end <= "2014-05-05T18:55:40.000"^^xsd:dateTime
+       #&& ?start >= "2014-05-05T18:34:54.000"^^xsd:dateTime
+    	 #&& ?end <= "2014-05-05T18:55:40.000"^^xsd:dateTime
 	)
 } 
 ##next

@@ -25,6 +25,7 @@ import be.ugent.rml.term.NamedNode;
 import java.io.*;
 
 import static org.example.CONSTANTS.mappingFilePath;
+import static org.example.CONSTANTS.dataFilePath;
 
 
 
@@ -63,6 +64,12 @@ public class Mapping {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
             result.write(out, "turtle");
             out.close();
+
+            // Output the results in a file
+            Writer output = new FileWriter(dataFilePath);
+            result.write(output, "turtle");
+            output.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
