@@ -82,14 +82,14 @@
 	rr:predicate act:start;
 	rr:objectMap [
 		rml:reference "start";
-		rr:datatype xsd:datetime
+		rr:datatype xsd:time
 	]
 .
 <#Interval_end_predicateObjectMap> a rr:PredicateObjectMap;
 	rr:predicate act:end;
 	rr:objectMap [
 		rml:reference "end";
-		rr:datatype xsd:datetime
+		rr:datatype xsd:time
 	]
 .
 

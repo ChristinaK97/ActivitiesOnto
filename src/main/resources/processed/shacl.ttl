@@ -1,0 +1,30 @@
+PREFIX act: <http://www.semanticweb.org/xristina/ontologies/2022/11/act#>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+
+act:TestShape 
+    a sh:NodeShape ;
+    sh:targetClass act:Activity;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "act" ;
+                sh:namespace "http://www.semanticweb.org/xristina/ontologies/2022/11/act#"^^xsd:anyURI ;
+            ]
+        ] ;
+        
+        sh:select 
+        """
+        select $this (act:time_interval/act:start as ?path) (?start_this as ?value) where { 
+	        ?prev a/rdfs:subClassOf act:Activity .
+            ?prev act:time_interval/act:start ?start_prev.
+            ?prev act:time_interval/act:end ?end_prev.
+            $this act:time_interval/act:start ?start_this.
+	
+            filter (
+    	        ?start_prev < ?start_this
+                && ?start_this < ?end_prev
+            )
+        }
+        """
+    ].

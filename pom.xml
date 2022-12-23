@@ -16,6 +16,18 @@
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.eclipse.rdf4j</groupId>
+        <artifactId>rdf4j-bom</artifactId>
+        <version>4.2.1</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -24,21 +36,28 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- json parser -->
     <dependency>
       <groupId>com.googlecode.json-simple</groupId>
       <artifactId>json-simple</artifactId>
       <version>1.1.1</version>
     </dependency>
 
-
+    <!-- graphdb -->
     <dependency>
       <groupId>com.ontotext.graphdb</groupId>
       <artifactId>graphdb-runtime</artifactId>
       <version>10.0.0</version>
-      <!-- Temporary workaround for missing Ontop dependencies for Ontotext build of Ontop -->
+
       <exclusions>
+        <!-- Temporary workaround for missing Ontop dependencies for Ontotext build of Ontop -->
         <exclusion>
           <groupId>it.unibz.inf.ontop</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+
+        <exclusion>
+          <groupId>org.eclipse.rdf4j</groupId>
           <artifactId>*</artifactId>
         </exclusion>
       </exclusions>
@@ -50,6 +69,8 @@
       <version>10.0.0</version>
     </dependency>
 
+
+    <!-- rml -->
     <dependency>
       <groupId>be.ugent.rml</groupId>
       <artifactId>rmlmapper</artifactId>
@@ -62,16 +83,25 @@
       </exclusions>
     </dependency>
 
+    <!-- rdf4j -->
+    <dependency>
+      <groupId>org.eclipse.rdf4j</groupId>
+      <artifactId>rdf4j-storage</artifactId>
+      <type>pom</type>
+    </dependency>
+
+    <!-- log4j -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-to-slf4j</artifactId>
       <version>2.19.0</version>
     </dependency>
 
+    <!-- ontop -->
     <dependency>
       <groupId>it.unibz.inf.ontop</groupId>
       <artifactId>ontop-rdf4j</artifactId>
-      <version>4.2.2</version>
+      <version>4.2.0</version>
     </dependency>
 
 
