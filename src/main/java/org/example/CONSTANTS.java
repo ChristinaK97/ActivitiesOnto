@@ -26,4 +26,6 @@ public class CONSTANTS {
     public static final String resultsFile = RESOURCES + "queries/results";
     public static final String queriesFile = RESOURCES + "queries/queries.txt";
 
+    public static final String reportPath = RESOURCES + "queries/report.ttl";
+
 }

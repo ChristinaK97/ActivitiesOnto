@@ -17,6 +17,8 @@ import org.eclipse.rdf4j.sail.shacl.ShaclSail;
 import java.io.IOException;
 import java.io.StringReader;
 
+
+// to upload shacl shape and validate after data have already been uploaded
 public class Validation {
 
     //private SailRepositoryConnection connection;

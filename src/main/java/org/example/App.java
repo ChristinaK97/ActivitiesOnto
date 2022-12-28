@@ -15,6 +15,8 @@ public class App {
         App app = new App();
         app.process_json_and_ontology();
         new Mapping();
-        new Graph_DB();
+        // to upload shacl shape before data, set to true
+        boolean validate = false;
+        new Graph_DB(validate);
     }
 }
